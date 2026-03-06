@@ -72,6 +72,7 @@
     initLogoAnimation();
 
     setTimeout(() => {
+      document.body.style.overflow = "auto";
       intro.style.opacity = "0";
 
       setTimeout(() => {
