@@ -70,15 +70,16 @@
   window.addEventListener("load", function () {
     if (!intro || !content) return;
     initLogoAnimation();
-    setTimeout(hideIntro, 4000);
-  });
 
-  // Failsafe to prevent the loader from getting stuck.
-  setTimeout(() => {
-    if (intro && content && intro.style.display !== "none") {
-      hideIntro();
-    }
-  }, 7000);
+    setTimeout(() => {
+      intro.style.opacity = "0";
+
+      setTimeout(() => {
+        intro.style.display = "none";
+        content.style.opacity = "1";
+      }, 800);
+    }, 3000);
+  });
 
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
