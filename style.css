@@ -32,6 +32,17 @@ body.is-loading {
   overflow: hidden;
 }
 
+#main-content {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+body.is-loading #main-content {
+  opacity: 0;
+  visibility: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -81,8 +92,8 @@ a {
 #loader {
   position: fixed;
   inset: 0;
-  background: #0b0b0b;
-  z-index: 50;
+  background: #0a0a0a;
+  z-index: 9999;
   display: grid;
   place-items: center;
   transition: opacity 0.6s ease, visibility 0.6s ease;
@@ -98,39 +109,18 @@ a {
   text-align: center;
 }
 
-.logo-svg {
+.logo-animation {
+  width: min(360px, 70vw);
+  margin: 0 auto;
+  aspect-ratio: 5 / 2;
+  display: grid;
+  place-items: center;
+}
+
+.logo-animation object {
   width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto;
-}
-
-.logo-stroke path,
-.logo-stroke line,
-.logo-stroke polyline,
-.logo-stroke polygon,
-.logo-stroke rect,
-.logo-stroke circle,
-.logo-stroke ellipse {
-  fill: none;
-  stroke: #ff7a00;
-  stroke-width: 2.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0.95;
-}
-
-.logo-stroke .draw {
-  animation: drawLogo 2.4s ease forwards;
-}
-
-.logo-svg.glow {
-  filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.45))
-          drop-shadow(0 0 18px rgba(255, 122, 0, 0.35))
-          drop-shadow(0 0 32px rgba(255, 122, 0, 0.25));
-  animation: neonFlicker 2.2s ease-in-out infinite;
 }
 
 .loader-core p {
