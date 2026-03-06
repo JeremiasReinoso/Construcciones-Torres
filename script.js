@@ -1,8 +1,7 @@
 ﻿(() => {
   const body = document.body;
   const loader = document.getElementById("loader");
-  const logoSvg = loader ? loader.querySelector(".logo-svg") : null;
-  const logoStrokes = loader ? loader.querySelectorAll(".logo-stroke path, .logo-stroke line, .logo-stroke polyline, .logo-stroke polygon, .logo-stroke rect, .logo-stroke circle, .logo-stroke ellipse") : [];
+  const logoObject = loader ? loader.querySelector(".logo-animation object") : null;
   const revealItems = document.querySelectorAll(".reveal");
   const counters = document.querySelectorAll(".stat-number");
   const parallaxContainer = document.querySelector("[data-parallax-container]");
@@ -15,32 +14,65 @@
   };
 
   const initLogoDraw = () => {
-    if (!loader || !logoSvg) return;
-    if (logoStrokes.length === 0) {
-      window.setTimeout(hideLoader, 1200);
-      return;
-    }
+    if (!loader || !logoObject) return;
 
-    const baseDuration = 2400;
-    const stagger = 80;
-    logoStrokes.forEach((shape, index) => {
-      if (typeof shape.getTotalLength !== "function") return;
-      const length = Math.max(1, Math.ceil(shape.getTotalLength()));
-      shape.style.strokeDasharray = `${length}`;
-      shape.style.strokeDashoffset = `${length}`;
-      shape.style.animationDelay = `${index * stagger}ms`;
-      shape.style.animationDuration = `${baseDuration}ms`;
-      shape.classList.add("draw");
-    });
+    const onLogoReady = () => {
+      const svgDoc = logoObject.contentDocument;
+      if (!svgDoc) {
+        window.setTimeout(hideLoader, 2500);
+        return;
+      }
 
-    const totalDrawTime = baseDuration + (logoStrokes.length - 1) * stagger;
-    window.setTimeout(() => {
-      logoSvg.classList.add("glow");
-    }, totalDrawTime + 120);
+      const svgEl = svgDoc.querySelector("svg");
+      const shapes = svgDoc.querySelectorAll("path, line, polyline, polygon, rect, circle, ellipse");
+      if (!svgEl || shapes.length === 0) {
+        window.setTimeout(hideLoader, 2500);
+        return;
+      }
 
-    window.setTimeout(() => {
-      hideLoader();
-    }, totalDrawTime + 900);
+      const style = svgDoc.createElement("style");
+      style.textContent = `
+        .logo-path {
+          fill: none;
+          stroke: #ff6a00;
+          stroke-width: 2.6;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-dasharray: var(--dash, 1000);
+          stroke-dashoffset: var(--dash, 1000);
+          animation: drawLogo 2.5s ease forwards;
+        }
+        .neon-glow {
+          filter: drop-shadow(0 0 10px #ff6a00) drop-shadow(0 0 20px #ff6a00);
+        }
+        @keyframes drawLogo {
+          from { stroke-dashoffset: var(--dash, 1000); }
+          to { stroke-dashoffset: 0; }
+        }
+      `;
+      svgEl.prepend(style);
+
+      shapes.forEach((shape) => {
+        if (typeof shape.getTotalLength !== "function") {
+          shape.classList.add("logo-path");
+          shape.style.setProperty("--dash", "1000");
+          return;
+        }
+        const length = Math.max(1, Math.ceil(shape.getTotalLength()));
+        shape.classList.add("logo-path");
+        shape.style.setProperty("--dash", String(length));
+      });
+
+      window.setTimeout(() => {
+        svgEl.classList.add("neon-glow");
+      }, 2400);
+
+      window.setTimeout(() => {
+        hideLoader();
+      }, 2500);
+    };
+
+    logoObject.addEventListener("load", onLogoReady, { once: true });
   };
 
   window.addEventListener("load", initLogoDraw);
