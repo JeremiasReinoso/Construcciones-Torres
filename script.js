@@ -1,96 +1,25 @@
 ﻿(() => {
   const body = document.body;
   const loader = document.getElementById("loader");
-  const logoObject = loader ? loader.querySelector(".logo-animation object") : null;
-  let loaderHidden = false;
+  const content = document.getElementById("main-content");
   const revealItems = document.querySelectorAll(".reveal");
   const counters = document.querySelectorAll(".stat-number");
   const parallaxContainer = document.querySelector("[data-parallax-container]");
   const depthLayers = document.querySelectorAll("[data-depth]");
 
-  const hideLoader = () => {
-    if (!loader || loaderHidden) return;
-    loaderHidden = true;
-    loader.classList.add("hide");
-    body.classList.remove("is-loading");
-    window.setTimeout(() => {
-      if (loader) loader.style.display = "none";
-    }, 650);
-  };
+  window.addEventListener("load", function () {
+    if (!loader || !content) return;
 
-  const initLogoDraw = () => {
-    if (!loader || !logoObject) {
-      window.setTimeout(hideLoader, 1500);
-      return;
-    }
+    setTimeout(() => {
+      loader.style.transition = "opacity 0.6s ease";
+      loader.style.opacity = "0";
 
-    const onLogoReady = () => {
-      const svgDoc = logoObject.contentDocument;
-      if (!svgDoc) {
-        window.setTimeout(hideLoader, 1500);
-        return;
-      }
-
-      const svgEl = svgDoc.querySelector("svg");
-      const shapes = svgDoc.querySelectorAll("path, line, polyline, polygon, rect, circle, ellipse");
-      if (!svgEl || shapes.length === 0) {
-        window.setTimeout(hideLoader, 1500);
-        return;
-      }
-
-      const style = svgDoc.createElement("style");
-      style.textContent = `
-        .logo-path {
-          fill: none;
-          stroke: #ff6a00;
-          stroke-width: 2.6;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-          stroke-dasharray: var(--dash, 1000);
-          stroke-dashoffset: var(--dash, 1000);
-          animation: drawLogo 2.5s ease forwards;
-        }
-        .neon-glow {
-          filter: drop-shadow(0 0 10px #ff6a00) drop-shadow(0 0 20px #ff6a00);
-        }
-        @keyframes drawLogo {
-          from { stroke-dashoffset: var(--dash, 1000); }
-          to { stroke-dashoffset: 0; }
-        }
-      `;
-      svgEl.prepend(style);
-
-      shapes.forEach((shape) => {
-        if (typeof shape.getTotalLength !== "function") {
-          shape.classList.add("logo-path");
-          shape.style.setProperty("--dash", "1000");
-          return;
-        }
-        const length = Math.max(1, Math.ceil(shape.getTotalLength()));
-        shape.classList.add("logo-path");
-        shape.style.setProperty("--dash", String(length));
-      });
-
-      window.setTimeout(() => {
-        svgEl.classList.add("neon-glow");
-      }, 1400);
-
-      window.setTimeout(() => {
-        hideLoader();
-      }, 1500);
-    };
-
-    logoObject.addEventListener("load", onLogoReady, { once: true });
-  };
-
-  // Always hide loader after load, even if the SVG never fires its load event.
-  window.addEventListener("load", () => {
-    initLogoDraw();
-    window.setTimeout(hideLoader, 1500);
+      setTimeout(() => {
+        loader.style.display = "none";
+        content.style.display = "block";
+      }, 600);
+    }, 1500);
   });
-
-  // Failsafe in case the load event is delayed by slow assets.
-  window.setTimeout(hideLoader, 4500);
 
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
