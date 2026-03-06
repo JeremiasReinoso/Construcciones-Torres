@@ -2,31 +2,39 @@
   const body = document.body;
   const loader = document.getElementById("loader");
   const logoObject = loader ? loader.querySelector(".logo-animation object") : null;
+  let loaderHidden = false;
   const revealItems = document.querySelectorAll(".reveal");
   const counters = document.querySelectorAll(".stat-number");
   const parallaxContainer = document.querySelector("[data-parallax-container]");
   const depthLayers = document.querySelectorAll("[data-depth]");
 
   const hideLoader = () => {
-    if (!loader) return;
+    if (!loader || loaderHidden) return;
+    loaderHidden = true;
     loader.classList.add("hide");
     body.classList.remove("is-loading");
+    window.setTimeout(() => {
+      if (loader) loader.style.display = "none";
+    }, 650);
   };
 
   const initLogoDraw = () => {
-    if (!loader || !logoObject) return;
+    if (!loader || !logoObject) {
+      window.setTimeout(hideLoader, 1500);
+      return;
+    }
 
     const onLogoReady = () => {
       const svgDoc = logoObject.contentDocument;
       if (!svgDoc) {
-        window.setTimeout(hideLoader, 2500);
+        window.setTimeout(hideLoader, 1500);
         return;
       }
 
       const svgEl = svgDoc.querySelector("svg");
       const shapes = svgDoc.querySelectorAll("path, line, polyline, polygon, rect, circle, ellipse");
       if (!svgEl || shapes.length === 0) {
-        window.setTimeout(hideLoader, 2500);
+        window.setTimeout(hideLoader, 1500);
         return;
       }
 
@@ -65,17 +73,24 @@
 
       window.setTimeout(() => {
         svgEl.classList.add("neon-glow");
-      }, 2400);
+      }, 1400);
 
       window.setTimeout(() => {
         hideLoader();
-      }, 2500);
+      }, 1500);
     };
 
     logoObject.addEventListener("load", onLogoReady, { once: true });
   };
 
-  window.addEventListener("load", initLogoDraw);
+  // Always hide loader after load, even if the SVG never fires its load event.
+  window.addEventListener("load", () => {
+    initLogoDraw();
+    window.setTimeout(hideLoader, 1500);
+  });
+
+  // Failsafe in case the load event is delayed by slow assets.
+  window.setTimeout(hideLoader, 4500);
 
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
