@@ -1,25 +1,84 @@
 ﻿(() => {
   const body = document.body;
-  const loader = document.getElementById("loader");
+  const intro = document.getElementById("intro-loader");
   const content = document.getElementById("main-content");
+  const logoObject = intro ? intro.querySelector(".logo-container object") : null;
   const revealItems = document.querySelectorAll(".reveal");
   const counters = document.querySelectorAll(".stat-number");
   const parallaxContainer = document.querySelector("[data-parallax-container]");
   const depthLayers = document.querySelectorAll("[data-depth]");
 
-  window.addEventListener("load", function () {
-    if (!loader || !content) return;
+  const hideIntro = () => {
+    if (!intro || !content) return;
+    intro.style.transition = "opacity 0.8s ease";
+    intro.style.opacity = "0";
 
     setTimeout(() => {
-      loader.style.transition = "opacity 0.6s ease";
-      loader.style.opacity = "0";
+      intro.style.display = "none";
+      content.style.display = "block";
+    }, 800);
+  };
 
-      setTimeout(() => {
-        loader.style.display = "none";
-        content.style.display = "block";
-      }, 600);
-    }, 1500);
+  const initLogoAnimation = () => {
+    if (!logoObject) return;
+
+    const onLogoLoad = () => {
+      const svgDoc = logoObject.contentDocument;
+      if (!svgDoc) return;
+
+      const svgEl = svgDoc.querySelector("svg");
+      const shapes = svgDoc.querySelectorAll("path, polygon, line, polyline, rect, circle, ellipse");
+      if (!svgEl || shapes.length === 0) return;
+
+      const style = svgDoc.createElement("style");
+      style.textContent = `
+        .intro-logo-path {
+          fill: transparent;
+          stroke: #ff6a00;
+          stroke-width: 3;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-dasharray: var(--dash, 1000);
+          stroke-dashoffset: var(--dash, 1000);
+          animation: drawLogo 2.5s ease forwards;
+        }
+        .intro-logo-glow {
+          filter: drop-shadow(0 0 10px #ff6a00) drop-shadow(0 0 20px #ff6a00);
+        }
+        @keyframes drawLogo {
+          to { stroke-dashoffset: 0; }
+        }
+      `;
+      svgEl.prepend(style);
+
+      shapes.forEach((shape) => {
+        if (typeof shape.getTotalLength === "function") {
+          const len = Math.max(1, Math.ceil(shape.getTotalLength()));
+          shape.style.setProperty("--dash", String(len));
+        }
+        shape.classList.add("intro-logo-path");
+      });
+
+      window.setTimeout(() => {
+        svgEl.classList.add("intro-logo-glow");
+      }, 2500);
+    };
+
+    logoObject.addEventListener("load", onLogoLoad, { once: true });
+  };
+
+  window.addEventListener("load", function () {
+    if (!intro || !content) return;
+    initLogoAnimation();
+    setTimeout(hideIntro, 4000);
   });
+
+  // Failsafe to prevent the loader from getting stuck.
+  setTimeout(() => {
+    if (intro && content && intro.style.display !== "none") {
+      hideIntro();
+    }
+  }, 7000);
 
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
