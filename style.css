@@ -29,7 +29,7 @@ body {
 }
 
 body.is-loading {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #main-content {
