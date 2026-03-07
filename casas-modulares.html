@@ -9,8 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
   <link rel="stylesheet" href="casas-modulares.css">
 </head>
 <body>
@@ -59,63 +57,26 @@
         </header>
 
         <div class="model-viewer-wrap reveal">
-          <div class="model-selector" role="group" aria-label="Seleccionar modelo de casa modular">
-            <button class="active" data-model="compacta" type="button">Compacta</button>
-            <button data-model="familiar" type="button">Familiar</button>
-            <button data-model="premium" type="button">Premium</button>
-          </div>
-
+          <!-- Futuro: reemplazar src por /models/casa-compacta.glb -->
+          <!-- Futuro: reemplazar src por /models/casa-familiar.glb -->
+          <!-- Futuro: reemplazar src por /models/casa-premium.glb -->
           <model-viewer
             id="houseViewer"
-            class="modular-model-viewer"
-            src="models/casa-compacta.glb"
+            src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
             alt="Modelo 3D de casa modular"
             camera-controls
             auto-rotate
-            auto-rotate-delay="1200"
-            rotation-per-second="12deg"
+            auto-rotate-delay="0"
+            rotation-per-second="20deg"
             shadow-intensity="1"
-            shadow-softness="0.9"
-            environment-image="neutral"
             exposure="1"
-            ar
-            loading="eager">
+            environment-image="neutral"
+            style="width:100%; height:500px; background:#0b0b0b; border-radius:20px;">
           </model-viewer>
 
-          <div class="model-viewer-actions">
-            <button class="btn btn-secondary" id="viewInteriorBtn" type="button">Ver interior</button>
-            <button class="btn btn-primary" id="viewSpecsBtn" type="button">Ver especificaciones</button>
-          </div>
-
-          <section class="viewer-specs" id="viewerSpecs" aria-live="polite">
-            <h3 id="specModelName">Compacta</h3>
-            <div class="viewer-specs-grid">
-              <article class="viewer-spec-item">
-                <span>Superficie</span>
-                <strong id="specArea">80m2</strong>
-              </article>
-              <article class="viewer-spec-item">
-                <span>Habitaciones</span>
-                <strong id="specRooms">2 habitaciones</strong>
-              </article>
-              <article class="viewer-spec-item">
-                <span>Banos</span>
-                <strong id="specBathrooms">1 bano</strong>
-              </article>
-              <article class="viewer-spec-item">
-                <span>Entrega</span>
-                <strong id="specDelivery">60 dias</strong>
-              </article>
-            </div>
-          </section>
-          <p class="viewer-help">Arrastra para rotar, usa la rueda del mouse para zoom y cambia entre modelos.</p>
-          <p class="viewer-note">Si aun no cargaste archivos .glb locales, se mostrara un modelo de demostracion.</p>
-          <div
-            class="viewer-fallback-models"
-            aria-hidden="true"
-            data-compacta-fallback="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/House/glTF-Binary/House.glb"
-            data-familiar-fallback="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Lantern/glTF-Binary/Lantern.glb"
-            data-premium-fallback="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/SciFiHelmet/glTF-Binary/SciFiHelmet.glb">
+          <div class="viewer-actions">
+            <button class="btn-primary" type="button">Ver interior</button>
+            <button class="btn-outline" type="button">Ver especificaciones</button>
           </div>
         </div>
       </div>
@@ -181,6 +142,7 @@
     </div>
   </footer>
 
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script src="casas-modulares.js"></script>
 </body>
 </html>
