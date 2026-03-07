@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
   <link rel="stylesheet" href="casas-modulares.css">
 </head>
 <body>
@@ -46,6 +48,38 @@
             <li><span>Soporte técnico:</span> asesoramiento integral hasta la entrega.</li>
           </ul>
         </aside>
+      </div>
+    </section>
+
+    <section class="section" id="visor-3d">
+      <div class="container">
+        <header class="section-head reveal model-viewer-head">
+          <span class="eyebrow">Recorrido 3D</span>
+          <h2>Explorá una casa modular en tiempo real</h2>
+        </header>
+
+        <div class="model-viewer-wrap reveal">
+          <model-viewer
+            class="modular-model-viewer"
+            src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/House/glTF-Binary/House.glb"
+            alt="Modelo 3D de casa modular"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="600"
+            rotation-per-second="22deg"
+            shadow-intensity="1"
+            shadow-softness="0.9"
+            environment-image="neutral"
+            exposure="1.05"
+            ar
+            loading="eager">
+          </model-viewer>
+
+          <div class="model-viewer-actions">
+            <button class="btn btn-secondary" type="button">Ver interior</button>
+            <button class="btn btn-primary" type="button">Ver especificaciones</button>
+          </div>
+        </div>
       </div>
     </section>
 
