@@ -197,7 +197,9 @@
         <div class="contact-copy">
           <span class="eyebrow">Contacto</span>
           <h2>Coordinemos tu próxima obra.</h2>
-          <p class="status-pill"><span aria-hidden="true"></span>Disponible ahora</p>
+          <div id="business-status" class="status-badge">
+            ● Verificando estado...
+          </div>
 
           <article class="contact-card">
             <h3>Horarios</h3>
@@ -242,6 +244,36 @@
   </a>
   </div>
 
+  <script>
+    (() => {
+      const badge = document.getElementById("business-status");
+      if (!badge) return;
+
+      const checkBusinessStatus = () => {
+        const now = new Date();
+        const day = now.getDay();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+        const openMinutes = day === 0 ? 10 * 60 : 9 * 60;
+        const closeMinutes = day === 0 ? 14 * 60 : 19 * 60;
+        const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+
+        badge.classList.remove("status-open", "status-closed");
+
+        if (isOpen) {
+          badge.textContent = "🟢 Disponible ahora";
+          badge.classList.add("status-open");
+          return;
+        }
+
+        badge.textContent = "🔴 Cerrado ahora";
+        badge.classList.add("status-closed");
+      };
+
+      checkBusinessStatus();
+      setInterval(checkBusinessStatus, 60000);
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
