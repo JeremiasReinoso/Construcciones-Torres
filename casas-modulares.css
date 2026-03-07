@@ -212,6 +212,38 @@ p {
   font-weight: 700;
 }
 
+.model-viewer-head {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.model-viewer-wrap {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.modular-model-viewer {
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 122, 0, 0.18), transparent 40%),
+    linear-gradient(160deg, #1a1a1a, #101010 70%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--glow), 0 24px 34px rgba(0, 0, 0, 0.34);
+}
+
+.model-viewer-actions {
+  margin-top: 1.1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
 .filters {
   margin-bottom: 1.5rem;
   display: flex;
@@ -560,11 +592,16 @@ body.page-transitioning {
 
   .hero-panel,
   .model-card,
+  .modular-model-viewer,
   .plan-wrap,
   .project-description,
   .cta-box,
   .page-hero-media {
     border-radius: 14px;
+  }
+
+  .modular-model-viewer {
+    height: 380px;
   }
 }
 
