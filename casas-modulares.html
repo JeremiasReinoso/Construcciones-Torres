@@ -59,25 +59,63 @@
         </header>
 
         <div class="model-viewer-wrap reveal">
+          <div class="model-selector" role="group" aria-label="Seleccionar modelo de casa modular">
+            <button class="active" data-model="compacta" type="button">Compacta</button>
+            <button data-model="familiar" type="button">Familiar</button>
+            <button data-model="premium" type="button">Premium</button>
+          </div>
+
           <model-viewer
+            id="houseViewer"
             class="modular-model-viewer"
-            src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/House/glTF-Binary/House.glb"
+            src="models/casa-compacta.glb"
             alt="Modelo 3D de casa modular"
             camera-controls
             auto-rotate
-            auto-rotate-delay="600"
-            rotation-per-second="22deg"
+            auto-rotate-delay="1200"
+            rotation-per-second="12deg"
             shadow-intensity="1"
             shadow-softness="0.9"
             environment-image="neutral"
-            exposure="1.05"
+            exposure="1"
             ar
             loading="eager">
           </model-viewer>
 
           <div class="model-viewer-actions">
-            <button class="btn btn-secondary" type="button">Ver interior</button>
-            <button class="btn btn-primary" type="button">Ver especificaciones</button>
+            <button class="btn btn-secondary" id="viewInteriorBtn" type="button">Ver interior</button>
+            <button class="btn btn-primary" id="viewSpecsBtn" type="button">Ver especificaciones</button>
+          </div>
+
+          <section class="viewer-specs" id="viewerSpecs" aria-live="polite">
+            <h3 id="specModelName">Compacta</h3>
+            <div class="viewer-specs-grid">
+              <article class="viewer-spec-item">
+                <span>Superficie</span>
+                <strong id="specArea">80m2</strong>
+              </article>
+              <article class="viewer-spec-item">
+                <span>Habitaciones</span>
+                <strong id="specRooms">2 habitaciones</strong>
+              </article>
+              <article class="viewer-spec-item">
+                <span>Banos</span>
+                <strong id="specBathrooms">1 bano</strong>
+              </article>
+              <article class="viewer-spec-item">
+                <span>Entrega</span>
+                <strong id="specDelivery">60 dias</strong>
+              </article>
+            </div>
+          </section>
+          <p class="viewer-help">Arrastra para rotar, usa la rueda del mouse para zoom y cambia entre modelos.</p>
+          <p class="viewer-note">Si aun no cargaste archivos .glb locales, se mostrara un modelo de demostracion.</p>
+          <div
+            class="viewer-fallback-models"
+            aria-hidden="true"
+            data-compacta-fallback="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/House/glTF-Binary/House.glb"
+            data-familiar-fallback="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Lantern/glTF-Binary/Lantern.glb"
+            data-premium-fallback="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/SciFiHelmet/glTF-Binary/SciFiHelmet.glb">
           </div>
         </div>
       </div>
