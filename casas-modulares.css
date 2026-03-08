@@ -331,7 +331,25 @@ p {
   transition: transform 0.45s ease;
 }
 
+.modelo-3d{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:inherit;
+}
+
+.modelo-3d iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  transition: transform 0.45s ease;
+}
+
 .model-card:hover .model-media img {
+  transform: scale(1.05);
+}
+
+.model-card:hover .model-media .modelo-3d iframe {
   transform: scale(1.05);
 }
 
