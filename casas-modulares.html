@@ -57,22 +57,24 @@
         </header>
 
         <div class="model-viewer-wrap reveal">
-          <!-- Futuro: reemplazar src por /models/casa-compacta.glb -->
-          <!-- Futuro: reemplazar src por /models/casa-familiar.glb -->
-          <!-- Futuro: reemplazar src por /models/casa-premium.glb -->
-          <model-viewer
-            id="houseViewer"
-            src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-            alt="Modelo 3D de casa modular"
-            camera-controls
-            auto-rotate
-            auto-rotate-delay="0"
-            rotation-per-second="20deg"
-            shadow-intensity="1"
-            exposure="1"
-            environment-image="neutral"
-            style="width:100%; height:500px; background:#0b0b0b; border-radius:20px;">
-          </model-viewer>
+          <div class="sketchfab-embed-wrapper">
+            <iframe
+              title="Open Concept Modern Apartment"
+              frameborder="0"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking
+              execution-while-out-of-viewport
+              execution-while-not-rendered
+              web-share
+              src="https://sketchfab.com/models/c0b5e259d6d7412a8c665c1875a0e1ca/embed">
+            </iframe>
+            <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+              <a href="https://sketchfab.com/3d-models/open-concept-modern-apartment-c0b5e259d6d7412a8c665c1875a0e1ca?utm_medium=embed&utm_campaign=share-popup&utm_content=c0b5e259d6d7412a8c665c1875a0e1ca" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Open Concept Modern Apartment </a> by <a href="https://sketchfab.com/Zeps3D?utm_medium=embed&utm_campaign=share-popup&utm_content=c0b5e259d6d7412a8c665c1875a0e1ca" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Zeps3D </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=c0b5e259d6d7412a8c665c1875a0e1ca" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+            </p>
+          </div>
 
           <div class="viewer-actions">
             <button class="btn-primary" type="button">Ver interior</button>
@@ -142,7 +144,6 @@
     </div>
   </footer>
 
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script src="casas-modulares.js"></script>
 </body>
 </html>
