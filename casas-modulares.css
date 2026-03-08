@@ -224,6 +224,19 @@ p {
   margin: 0 auto;
 }
 
+.sketchfab-embed-wrapper iframe {
+  width: 100%;
+  height: 500px;
+  border: 0;
+  border-radius: 20px;
+  background: #0b0b0b;
+  transition: transform 0.3s ease;
+}
+
+.sketchfab-embed-wrapper iframe:hover {
+  transform: scale(1.02);
+}
+
 .viewer-actions {
   display: flex;
   justify-content: center;
@@ -248,14 +261,6 @@ p {
   padding: 12px 24px;
   border-radius: 30px;
   cursor: pointer;
-}
-
-model-viewer {
-  transition: transform 0.3s ease;
-}
-
-model-viewer:hover {
-  transform: scale(1.02);
 }
 
 .filters {
@@ -614,13 +619,13 @@ body.page-transitioning {
     border-radius: 14px;
   }
 
-  model-viewer {
+  .sketchfab-embed-wrapper iframe {
     height: 350px;
   }
 }
 
 @media (max-width: 768px) {
-  model-viewer {
+  .sketchfab-embed-wrapper iframe {
     height: 350px !important;
   }
 }
