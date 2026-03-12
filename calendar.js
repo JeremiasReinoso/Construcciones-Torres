@@ -1,28 +1,42 @@
-(() => {
+﻿(() => {
   const calendarEl = document.getElementById("calendar");
   if (!calendarEl || typeof FullCalendar === "undefined") return;
 
-  const storageKey = `turnos:${window.location.pathname}`;
+  const form = document.querySelector("[data-turno-form]");
+  if (!form) return;
+
   const wrapper = calendarEl.closest(".calendar-container");
+  const dateInput = form.querySelector("[data-turno-date]");
+  const timeInput = form.querySelector("[data-turno-time]");
+  const nameInput = form.querySelector("[data-turno-name]");
+  const phoneInput = form.querySelector("[data-turno-phone]");
+  const summaryEl = form.querySelector("[data-turno-summary]");
+  const serviceName = form.dataset.service || "Servicio";
+  const whatsappNumber = form.dataset.whatsapp || "";
 
-  const readEvents = () => {
-    try {
-      const raw = localStorage.getItem(storageKey);
-      return raw ? JSON.parse(raw) : [];
-    } catch (error) {
-      return [];
-    }
+  let selectedDayEl = null;
+  let selectedDate = "";
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "";
+    const [year, month, day] = dateStr.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString("es-AR", {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
   };
 
-  const persistEvents = (events) => {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(events));
-    } catch (error) {
-      // Ignore storage errors (private mode, quotas).
+  const updateSummary = () => {
+    if (!summaryEl) return;
+    if (!selectedDate) {
+      summaryEl.textContent = "Seleccioná un día en el calendario.";
+      return;
     }
+    summaryEl.textContent = formatDate(selectedDate);
   };
-
-  const initialEvents = readEvents();
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
     locale: "es",
@@ -36,44 +50,13 @@
       today: "Hoy",
     },
     selectable: true,
-    dayMaxEvents: true,
-    events: initialEvents,
     dateClick: (info) => {
-      const title = window.prompt("Nombre del turno");
-      if (!title) return;
-
-      const rawTime = window.prompt("Hora (HH:MM) opcional", "09:00");
-      const validTime = rawTime && /^\d{2}:\d{2}$/.test(rawTime);
-      const start = validTime ? `${info.dateStr}T${rawTime}` : info.dateStr;
-
-      const newEvent = {
-        id: String(Date.now()),
-        title,
-        start,
-        allDay: !validTime,
-      };
-
-      calendar.addEvent(newEvent);
-      const updatedEvents = [...calendar.getEvents()].map((event) => ({
-        id: event.id,
-        title: event.title,
-        start: event.startStr,
-        allDay: event.allDay,
-      }));
-      persistEvents(updatedEvents);
-    },
-    eventClick: (info) => {
-      const shouldRemove = window.confirm("¿Querés eliminar este turno?");
-      if (!shouldRemove) return;
-
-      info.event.remove();
-      const updatedEvents = [...calendar.getEvents()].map((event) => ({
-        id: event.id,
-        title: event.title,
-        start: event.startStr,
-        allDay: event.allDay,
-      }));
-      persistEvents(updatedEvents);
+      selectedDate = info.dateStr;
+      if (dateInput) dateInput.value = selectedDate;
+      if (selectedDayEl) selectedDayEl.classList.remove("is-selected");
+      selectedDayEl = info.dayEl;
+      if (selectedDayEl) selectedDayEl.classList.add("is-selected");
+      updateSummary();
     },
     datesSet: () => {
       if (!wrapper) return;
@@ -88,4 +71,37 @@
   if (wrapper) {
     wrapper.classList.add("calendar-animate");
   }
+
+  updateSummary();
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const dateValue = dateInput ? dateInput.value : selectedDate;
+    const timeValue = timeInput ? timeInput.value : "";
+    const nameValue = nameInput ? nameInput.value.trim() : "";
+    const phoneValue = phoneInput ? phoneInput.value.trim() : "";
+
+    if (!dateValue || !timeValue || !nameValue || !phoneValue) {
+      window.alert("Completá la fecha, horario, nombre y teléfono para solicitar el turno.");
+      return;
+    }
+
+    const message = [
+      "Nueva solicitud de turno técnico",
+      "",
+      `Servicio: ${serviceName}`,
+      "",
+      `Fecha: ${formatDate(dateValue)}`,
+      `Horario: ${timeValue}`,
+      "",
+      `Nombre: ${nameValue}`,
+      `Teléfono: ${phoneValue}`,
+    ].join("\n");
+
+    const text = encodeURIComponent(message);
+    const digits = whatsappNumber.replace(/\D/g, "");
+    const base = digits ? `https://wa.me/${digits}` : "https://wa.me/";
+    const url = `${base}?text=${text}`;
+    window.open(url, "_blank", "noopener");
+  });
 })();
