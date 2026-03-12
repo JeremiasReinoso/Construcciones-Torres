@@ -380,6 +380,8 @@ p {
   border-radius: var(--radius);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  display: block;
+  color: inherit;
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
@@ -391,6 +393,55 @@ p {
   transform: translateY(-8px);
   border-color: rgba(255, 95, 31, 0.42);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 22px rgba(255, 95, 31, 0.15);
+}
+
+.servicio-card:focus-visible {
+  outline: 2px solid rgba(255, 95, 31, 0.7);
+  outline-offset: 4px;
+}
+
+.service-page-hero {
+  display: grid;
+  gap: 1.6rem;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+}
+
+.service-detail {
+  background: rgba(22, 22, 22, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+}
+
+.service-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #b6b6b6;
+  line-height: 1.6;
+}
+
+.calendar-embed {
+  border: 1px solid rgba(255, 95, 31, 0.25);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #141414;
+  min-height: 420px;
+}
+
+.calendar-embed iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
+}
+
+.service-cta {
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: var(--radius);
+  padding: 2rem 1.2rem;
+  background: linear-gradient(160deg, rgba(22, 22, 22, 0.9), rgba(13, 13, 13, 0.6));
 }
 
 .servicio-card h3 {
@@ -889,6 +940,7 @@ p {
   .method-grid,
   .service-grid,
   .modular-grid,
+  .service-page-hero,
   .stats-grid {
     grid-template-columns: 1fr;
   }
@@ -899,6 +951,9 @@ p {
   .project-card,
   .stats-grid,
   .cta,
+  .service-detail,
+  .calendar-embed,
+  .service-cta,
   .contact-card,
   .contact-map-wrap,
   .contact-map-wrap iframe {
