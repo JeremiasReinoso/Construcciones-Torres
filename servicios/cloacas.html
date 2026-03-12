@@ -85,10 +85,6 @@
               <input type="text" name="nombre" placeholder="Tu nombre completo" required data-turno-name>
             </label>
             <label class="turno-field">
-              <span>Tel&eacute;fono</span>
-              <input type="tel" name="telefono" placeholder="+54 9 2944340012" required data-turno-phone>
-            </label>
-            <label class="turno-field">
               <span>Horario disponible</span>
               <select name="horario" required data-turno-time>
                 <option value="" disabled selected>Eleg&iacute; un horario</option>
@@ -101,6 +97,14 @@
                 <option>16:00</option>
                 <option>17:00</option>
               </select>
+            </label>
+            <label class="turno-field turno-field--phone">
+              <span>Tel&eacute;fono</span>
+              <input type="tel" name="telefono" placeholder="+54 9 2944 000000" required data-turno-phone>
+            </label>
+            <label class="turno-field">
+              <span>&iquest;Qu&eacute; necesit&aacute;s?</span>
+              <textarea name="descripcion" placeholder="Cont&aacute;nos brevemente qu&eacute; trabajo necesit&aacute;s..." rows="3" data-turno-desc></textarea>
             </label>
             <input type="hidden" name="fecha" data-turno-date>
             <button class="btn btn-primary" type="submit">Solicitar turno</button>
@@ -129,5 +133,6 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
   <script src="../calendar.js"></script>
   <script src="../script.js"></script>
+  <script src="../time-picker.js"></script>
 </body>
 </html>
