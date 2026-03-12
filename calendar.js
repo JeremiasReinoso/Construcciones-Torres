@@ -10,6 +10,7 @@
   const timeInput = form.querySelector("[data-turno-time]");
   const nameInput = form.querySelector("[data-turno-name]");
   const phoneInput = form.querySelector("[data-turno-phone]");
+  const descInput = form.querySelector("[data-turno-desc]");
   const summaryEl = form.querySelector("[data-turno-summary]");
   const summaryBox = summaryEl ? summaryEl.closest(".turno-summary") : null;
   const serviceName = form.dataset.service || "Servicio";
@@ -76,18 +77,27 @@
     const err = getOrCreateError(field);
     err.textContent = msg;
     err.classList.add("visible");
-    field.style.borderColor = "rgba(255, 96, 96, 0.7)";
-    field.style.boxShadow = "0 0 0 3px rgba(255, 96, 96, 0.15)";
+    // Si el campo tiene un time-picker custom, marcar el trigger
+    if (field._timePicker) {
+      field._timePicker._setError?.();
+    } else {
+      field.style.borderColor = "rgba(255, 96, 96, 0.7)";
+      field.style.boxShadow = "0 0 0 3px rgba(255, 96, 96, 0.15)";
+    }
   };
 
   const clearError = (field) => {
     const err = field.parentElement.querySelector(".turno-error");
     if (err) err.classList.remove("visible");
-    field.style.borderColor = "";
-    field.style.boxShadow = "";
+    if (field._timePicker) {
+      field._timePicker._clearError?.();
+    } else {
+      field.style.borderColor = "";
+      field.style.boxShadow = "";
+    }
   };
 
-  // Limpiar error al escribir 
+  // Limpiar error al escribir
   [nameInput, phoneInput].forEach((input) => {
     if (!input) return;
     input.addEventListener("input", () => clearError(input));
@@ -196,11 +206,12 @@
     const timeValue = timeInput ? timeInput.value : "";
     const nameValue = nameInput ? nameInput.value.trim() : "";
     const phoneValue = phoneInput ? phoneInput.value.trim() : "";
+    const descValue = descInput ? descInput.value.trim() : "";
 
     const formattedDate = formatDate(dateValue);
     const capitalDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
-    const message = [
+    const messageParts = [
       `🔧 *Nueva solicitud de turno técnico*`,
       "",
       `📋 *Servicio:* ${serviceName}`,
@@ -209,7 +220,9 @@
       "",
       `👤 *Nombre:* ${nameValue}`,
       `📞 *Teléfono:* ${phoneValue}`,
-    ].join("\n");
+    ];
+    if (descValue) messageParts.push("", `📝 *Descripción:* ${descValue}`);
+    const message = messageParts.join("\n");
 
     const text = encodeURIComponent(message);
     const digits = whatsappNumber.replace(/\D/g, "");
