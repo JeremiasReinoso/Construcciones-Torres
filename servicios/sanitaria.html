@@ -71,8 +71,40 @@
           <span class="eyebrow">Calendario</span>
           <h2>Agend&aacute; un turno t&eacute;cnico</h2>
         </header>
-        <div class="calendar-container reveal">
-          <div id="calendar"></div>
+        <div class="calendar-layout reveal">
+          <div class="calendar-container">
+            <div id="calendar"></div>
+          </div>
+          <form class="turno-form" data-turno-form data-service="Instalaci&oacute;n sanitaria" data-whatsapp="549XXXXXXXXXX">
+            <div class="turno-summary">
+              <span class="eyebrow">Fecha seleccionada</span>
+              <p data-turno-summary>Seleccion&aacute; un d&iacute;a en el calendario.</p>
+            </div>
+            <label class="turno-field">
+              <span>Nombre</span>
+              <input type="text" name="nombre" placeholder="Tu nombre completo" required data-turno-name>
+            </label>
+            <label class="turno-field">
+              <span>Tel&eacute;fono</span>
+              <input type="tel" name="telefono" placeholder="+54 9 11 0000-0000" required data-turno-phone>
+            </label>
+            <label class="turno-field">
+              <span>Horario disponible</span>
+              <select name="horario" required data-turno-time>
+                <option value="" disabled selected>Eleg&iacute; un horario</option>
+                <option>08:00</option>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>14:00</option>
+                <option>15:00</option>
+                <option>16:00</option>
+                <option>17:00</option>
+              </select>
+            </label>
+            <input type="hidden" name="fecha" data-turno-date>
+            <button class="btn btn-primary" type="submit">Solicitar turno</button>
+          </form>
         </div>
       </div>
     </section>
