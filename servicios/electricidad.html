@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -70,13 +71,8 @@
           <span class="eyebrow">Calendario</span>
           <h2>Agend&aacute; un turno t&eacute;cnico</h2>
         </header>
-        <div class="calendar-embed reveal">
-          <iframe
-            title="Calendario de turnos"
-            src=""
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
+        <div class="calendar-container reveal">
+          <div id="calendar"></div>
         </div>
       </div>
     </section>
@@ -98,6 +94,8 @@
       <a href="../index.html#servicios">Volver a servicios</a>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  <script src="../calendar.js"></script>
   <script src="../script.js"></script>
 </body>
 </html>
