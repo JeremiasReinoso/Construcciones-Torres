@@ -436,6 +436,85 @@ p {
   border: 0;
 }
 
+.calendar-container {
+  border: 1px solid rgba(255, 95, 31, 0.25);
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, rgba(20, 20, 20, 0.96), rgba(12, 12, 12, 0.85));
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  padding: 1.2rem;
+  overflow: hidden;
+}
+
+.calendar-container #calendar {
+  width: 100%;
+}
+
+.calendar-container .fc {
+  --fc-page-bg-color: transparent;
+  --fc-border-color: rgba(255, 255, 255, 0.08);
+  --fc-neutral-bg-color: rgba(255, 255, 255, 0.04);
+  --fc-today-bg-color: rgba(255, 95, 31, 0.18);
+  --fc-event-bg-color: #ff5f1f;
+  --fc-event-border-color: rgba(255, 95, 31, 0.85);
+  --fc-event-text-color: #0b0b0b;
+  color: #e8e8e8;
+}
+
+.calendar-container .fc .fc-toolbar-title {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  letter-spacing: 0.04em;
+  color: #f5f5f5;
+}
+
+.calendar-container .fc .fc-button-primary {
+  background: linear-gradient(135deg, #ff6a2f, #ff4c0d);
+  border: 0;
+  color: #0b0b0b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.55rem 0.85rem;
+  box-shadow: 0 0 0 1px rgba(255, 95, 31, 0.45) inset, 0 8px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendar-container .fc .fc-button-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.4);
+}
+
+.calendar-container .fc .fc-button-primary:disabled {
+  background: #2a2a2a;
+  color: #8f8f8f;
+  box-shadow: none;
+}
+
+.calendar-container .fc .fc-daygrid-day-number,
+.calendar-container .fc .fc-col-header-cell-cushion {
+  color: #d6d6d6;
+}
+
+.calendar-container .fc .fc-daygrid-day:hover {
+  background: rgba(255, 95, 31, 0.08);
+  transition: background 0.2s ease;
+}
+
+.calendar-container .fc .fc-daygrid-event {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-weight: 600;
+}
+
+.calendar-container .fc .fc-daygrid-event:hover {
+  filter: brightness(1.05);
+}
+
+.calendar-container.calendar-animate .fc-view-harness {
+  animation: calendarFade 0.35s ease;
+}
+
 .service-cta {
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -902,6 +981,11 @@ p {
   50% { opacity: 1; }
 }
 
+@keyframes calendarFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 1060px) {
   .hero-grid,
   .method-grid,
@@ -953,6 +1037,7 @@ p {
   .cta,
   .service-detail,
   .calendar-embed,
+  .calendar-container,
   .service-cta,
   .contact-card,
   .contact-map-wrap,
@@ -967,6 +1052,19 @@ p {
   .contact-map-wrap,
   .contact-map-wrap iframe {
     min-height: 320px;
+  }
+
+  .calendar-container {
+    padding: 0.9rem;
+  }
+
+  .calendar-container .fc .fc-toolbar {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .calendar-container .fc .fc-button {
+    padding: 0.5rem 0.75rem;
   }
 
   .contact-map-wrap {
