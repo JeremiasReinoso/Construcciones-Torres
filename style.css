@@ -357,13 +357,21 @@ p {
 .servicios-instalaciones {
   margin-top: 1.2rem;
   padding: 100px 20px 0;
-  text-align: center;
+  text-align: left;
+}
+
+.servicios-instalaciones .section-head {
+  max-width: 760px;
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
 }
 
 .servicios-intro {
-  max-width: 700px;
-  margin: 0 auto 50px;
+  max-width: 760px;
+  margin: 0 0 50px;
   opacity: 0.8;
+  text-align: left;
 }
 
 .servicios-grid {
