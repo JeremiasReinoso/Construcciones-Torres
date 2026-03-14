@@ -747,6 +747,72 @@ p {
   50% { border-color: transparent; }
 }
 
+.eco-hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  background-image:
+    linear-gradient(120deg, rgba(7, 10, 8, 0.85), rgba(7, 10, 8, 0.6)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.eco-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 20%, rgba(109, 190, 69, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.eco-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  padding: 7rem 0 6rem;
+}
+
+.eco-label {
+  font-family: "Sora", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #cfd8cd;
+}
+
+.eco-hero h1 {
+  margin: 0.8rem 0 0.4rem;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  max-width: 12ch;
+}
+
+.eco-hero-subtitle {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: #e7efe3;
+  margin-bottom: 1rem;
+}
+
+.eco-hero-description {
+  color: #c8d1c5;
+  max-width: 52ch;
+  line-height: 1.7;
+}
+
+.eco-hero-lines {
+  margin-top: 2rem;
+  height: 2px;
+  width: 160px;
+  background: linear-gradient(90deg, rgba(109, 190, 69, 0.9), transparent);
+  box-shadow: 0 0 12px rgba(109, 190, 69, 0.45);
+}
+
+.eco-project-page .eco-title {
+  max-width: 22ch;
+}
+
 .stats-grid {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background:
