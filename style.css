@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #0b0b0b;
   --steel: #161616;
   --line: #242424;
@@ -28,18 +28,10 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
 }
-
-body.is-loading {
-  overflow-x: hidden;
-}
-
+
 #main-content {
   opacity: 1;
   transition: opacity 1s ease;
-}
-
-body.is-loading #main-content {
-  opacity: 0;
 }
 
 a {
@@ -1183,7 +1175,7 @@ p {
    CALENDARIO 
    ============================================================ */
 
-/* ── Layout general ─────────────────────────────────────── */
+/* -- Layout general --------------------------------------- */
 .calendar-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
@@ -1191,7 +1183,7 @@ p {
   align-items: start;
 }
 
-/* ── Contenedor del calendario ──────────────────────────── */
+/* -- Contenedor del calendario ---------------------------- */
 .calendar-container {
   border: 1px solid rgba(255, 95, 31, 0.28);
   border-radius: var(--radius);
@@ -1202,7 +1194,7 @@ p {
   position: relative;
 }
 
-/* sutil línea naranja animada en la parte superior */
+/* sutil l�nea naranja animada en la parte superior */
 .calendar-container::before {
   content: "";
   position: absolute;
@@ -1218,7 +1210,7 @@ p {
   width: 100%;
 }
 
-/* ── Variables FullCalendar ─────────────────────────────── */
+/* -- Variables FullCalendar ------------------------------- */
 .calendar-container .fc {
   --fc-page-bg-color: transparent;
   --fc-border-color: rgba(255, 255, 255, 0.07);
@@ -1231,7 +1223,7 @@ p {
   font-family: "Space Grotesk", sans-serif;
 }
 
-/* ── Toolbar ─────────────────────────────────────────────── */
+/* -- Toolbar ----------------------------------------------- */
 .calendar-container .fc .fc-toolbar {
   margin-bottom: 1.1rem;
   gap: 0.5rem;
@@ -1281,7 +1273,7 @@ p {
   transform: none;
 }
 
-/* ── Cabecera días ─────────────────────────────────────── */
+/* -- Cabecera d�as --------------------------------------- */
 .calendar-container .fc .fc-col-header-cell-cushion {
   color: #aaa;
   font-size: 0.78rem;
@@ -1291,7 +1283,7 @@ p {
   padding: 0.55rem 0;
 }
 
-/* ── Celdas día ─────────────────────────────────────────── */
+/* -- Celdas d�a ------------------------------------------- */
 .calendar-container .fc .fc-daygrid-day {
   cursor: pointer;
   transition: background 0.18s ease;
@@ -1313,7 +1305,7 @@ p {
   color: #fff;
 }
 
-/* Día de hoy */
+/* D�a de hoy */
 .calendar-container .fc .fc-day-today {
   background: rgba(255, 95, 31, 0.12) !important;
   border-color: rgba(255, 95, 31, 0.3) !important;
@@ -1324,7 +1316,7 @@ p {
   font-weight: 700;
 }
 
-/* Día seleccionado */
+/* D�a seleccionado */
 .calendar-container .fc .fc-daygrid-day.is-selected {
   background: rgba(255, 95, 31, 0.2) !important;
   box-shadow: inset 0 0 0 2px rgba(255, 95, 31, 0.55);
@@ -1336,14 +1328,14 @@ p {
   font-weight: 700;
 }
 
-/* Días pasados — más opacos */
+/* D�as pasados � m�s opacos */
 .calendar-container .fc .fc-day-past {
   opacity: 0.45;
   cursor: default;
   pointer-events: none;
 }
 
-/* ── Eventos ─────────────────────────────────────────────── */
+/* -- Eventos ----------------------------------------------- */
 .calendar-container .fc .fc-daygrid-event {
   border-radius: 999px;
   padding: 2px 8px;
@@ -1355,7 +1347,7 @@ p {
   filter: brightness(1.08);
 }
 
-/* ── Animación al cambiar mes ────────────────────────────── */
+/* -- Animaci�n al cambiar mes ------------------------------ */
 .calendar-container.calendar-animate .fc-view-harness {
   animation: calendarFade 0.32s ease;
 }
@@ -1384,7 +1376,7 @@ p {
   background: linear-gradient(90deg, transparent, rgba(255, 95, 31, 0.6), transparent);
 }
 
-/* ── Resumen fecha seleccionada ──────────────────────────── */
+/* -- Resumen fecha seleccionada ---------------------------- */
 .turno-summary {
   padding: 1rem 1.1rem;
   border-radius: 12px;
@@ -1414,7 +1406,7 @@ p {
   min-height: 1.3em;
 }
 
-/* ── Campos del formulario ───────────────────────────────── */
+/* -- Campos del formulario --------------------------------- */
 .turno-field {
   display: grid;
   gap: 0.45rem;
@@ -1473,13 +1465,13 @@ p {
   background: rgba(255, 95, 31, 0.04);
 }
 
-/* Estado válido */
+/* Estado v�lido */
 .turno-field input:valid:not(:placeholder-shown),
 .turno-field select:valid:not([value=""]) {
   border-color: rgba(255, 95, 31, 0.35);
 }
 
-/* ── Botón submit ────────────────────────────────────────── */
+/* -- Bot�n submit ------------------------------------------ */
 .turno-form .btn-primary {
   width: 100%;
   margin-top: 0.2rem;
@@ -1504,7 +1496,7 @@ p {
   transform: translateX(100%);
 }
 
-/* ── Mensaje de error inline ─────────────────────────────── */
+/* -- Mensaje de error inline ------------------------------- */
 .turno-error {
   font-size: 0.82rem;
   color: #ff6060;
@@ -1517,7 +1509,7 @@ p {
   display: block;
 }
 
-/* ── Toast de confirmación ───────────────────────────────── */
+/* -- Toast de confirmaci�n --------------------------------- */
 .turno-toast {
   position: fixed;
   bottom: 1.6rem;
@@ -1727,3 +1719,4 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
