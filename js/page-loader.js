@@ -5,6 +5,6 @@ window.addEventListener("load", function () {
   loader.style.opacity = "0";
 
   setTimeout(() => {
-    loader.remove();
+    loader.style.display = "none";
   }, 600);
 });
