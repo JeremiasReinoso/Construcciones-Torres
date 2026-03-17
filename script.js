@@ -73,4 +73,19 @@
     parallaxContainer.addEventListener("mousemove", onMove);
     parallaxContainer.addEventListener("mouseleave", resetLayers);
   }
+
+  const slider = document.querySelector(".mahuida-slider");
+  if (slider) {
+    const slides = Array.from(slider.querySelectorAll(".slide"));
+    if (slides.length > 1) {
+      let index = 0;
+      slides[index].classList.add("active");
+
+      setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+      }, 4000);
+    }
+  }
 })();
