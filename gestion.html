@@ -4,110 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Gestión integral de obra con dirección técnica, planificación y control de ejecución.">
+  <meta name="theme-color" content="#0b0b0b">
   <title>Gestión integral de obra | Construcciones Torres</title>
   <link rel="icon" type="image/png" href="Logo construcciones Torres.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: dark;
-    }
-
-    body {
-      background: var(--bg);
-    }
-
-    .service-hero {
-      padding: 7rem 0 4rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: radial-gradient(circle at 20% 20%, rgba(255, 95, 31, 0.12), transparent 40%), var(--bg);
-    }
-
-    .service-hero h1 {
-      max-width: 16ch;
-    }
-
-    .service-hero p {
-      max-width: 60ch;
-      color: #c7c7c7;
-      font-size: 1.05rem;
-    }
-
-    .section-card {
-      background: rgba(22, 22, 22, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
-    }
-
-    .service-detail {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1.5rem;
-    }
-
-    .calendar-section {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    #calendar {
-      background: rgba(16, 16, 16, 0.9);
-      border-radius: calc(var(--radius) + 4px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-    }
-
-    .fc {
-      color: #eaeaea;
-      font-family: "Space Grotesk", sans-serif;
-    }
-
-    .fc .fc-toolbar-title {
-      font-family: "Sora", sans-serif;
-      font-size: 1.2rem;
-    }
-
-    .fc .fc-button-primary {
-      background: linear-gradient(135deg, #ff6a2f, #ff4c0d);
-      border: none;
-      box-shadow: 0 0 0 1px rgba(255, 95, 31, 0.24) inset;
-    }
-
-    .fc .fc-button-primary:disabled {
-      opacity: 0.6;
-    }
-
-    .fc-theme-standard td,
-    .fc-theme-standard th,
-    .fc-theme-standard .fc-scrollgrid {
-      border-color: rgba(255, 255, 255, 0.08);
-    }
-
-    .fc .fc-daygrid-day-number {
-      color: #f1f1f1;
-    }
-
-    .fc .fc-day-today {
-      background: rgba(255, 95, 31, 0.12);
-    }
-
-    @media (max-width: 768px) {
-      .service-hero {
-        padding: 6rem 0 3rem;
-      }
-
-      .section-card {
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/page-loader.css">
 </head>
 <body>
+  <div id="page-loader"></div>
   <div class="site-bg" aria-hidden="true">
     <div class="blueprint-grid"></div>
     <div class="industrial-particles"></div>
@@ -116,42 +24,100 @@
 
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="index.html#servicios">CONSTRUCCIONES TORRES</a>
+      <a class="brand" href="index.html">CONSTRUCCIONES TORRES</a>
       <nav aria-label="Navegación principal">
         <ul>
           <li><a href="index.html#servicios">Servicios</a></li>
-          <li><a href="index.html#proyectos">Proyecto Mahuida</a></li>
-          <li><a href="index.html#contacto">Contacto</a></li>
+          <li><a href="#detalle">Detalle</a></li>
+          <li><a href="#turnos">Turnos</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="service-hero">
-      <div class="container">
-        <span class="eyebrow">Servicio especializado</span>
-        <h1>Gestión integral de obra</h1>
-        <p>Coordinamos dirección técnica, planificación y control operativo para asegurar trazabilidad total y ejecución sin desvíos.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container service-detail section-card">
-        <h2>Descripción del servicio</h2>
-        <p>Nos encargamos de la dirección integral del proyecto: definición de alcances, cronogramas, coordinación de proveedores y control de calidad. Implementamos métricas de avance y reportes técnicos para una toma de decisiones precisa.</p>
-        <p>El objetivo es garantizar eficiencia, cumplimiento de plazos y resultados consistentes con los estándares del cliente.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container calendar-section">
-        <div class="section-head">
-          <span class="eyebrow">Agenda</span>
-          <h2>Disponibilidad y turnos</h2>
+    <section class="hero section">
+      <div class="container service-page-hero reveal">
+        <div class="hero-copy">
+          <span class="eyebrow">Servicio</span>
+          <h1>Gestión integral de obra</h1>
+          <p>Coordinamos dirección técnica, planificación y control operativo para asegurar trazabilidad total y ejecución sin desvíos.</p>
         </div>
-        <div class="section-card">
-          <div id="calendar"></div>
+        <div class="service-detail">
+          <h3>Trabajos incluidos</h3>
+          <ul class="service-list">
+            <li>Definición de alcances y planificación.</li>
+            <li>Coordinación de proveedores y equipos.</li>
+            <li>Seguimiento de avances y costos.</li>
+            <li>Control de calidad y seguridad.</li>
+            <li>Reportes técnicos y trazabilidad total.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="detalle">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="eyebrow">Descripción</span>
+          <h2>Dirección técnica y control total de ejecución.</h2>
+        </header>
+        <div class="service-detail reveal">
+          <p>Nos encargamos de la dirección integral del proyecto: definición de alcances, cronogramas, coordinación de proveedores y control de calidad. Implementamos métricas de avance y reportes técnicos para una toma de decisiones precisa.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="turnos">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="eyebrow">Calendario</span>
+          <h2>Agendá un turno técnico</h2>
+        </header>
+        <div class="calendar-layout reveal">
+          <div class="calendar-container">
+            <div id="calendar"></div>
+          </div>
+          <form class="turno-form" data-turno-form data-service="Gestión integral de obra" data-whatsapp="5492944340012">
+            <div class="turno-summary">
+              <span class="eyebrow">Fecha seleccionada</span>
+              <p data-turno-summary>Seleccioná un día en el calendario.</p>
+            </div>
+            <label class="turno-field">
+              <span>Nombre</span>
+              <input type="text" name="nombre" placeholder="Tu nombre completo" required data-turno-name>
+            </label>
+            <label class="turno-field">
+              <span>Horario disponible</span>
+              <select name="horario" required data-turno-time>
+                <option value="" disabled selected>Elegí un horario</option>
+                <option>08:00</option>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>14:00</option>
+                <option>15:00</option>
+                <option>16:00</option>
+                <option>17:00</option>
+              </select>
+            </label>
+            <label class="turno-field">
+              <span>¿Qué necesitás?</span>
+              <textarea name="descripcion" placeholder="Contános brevemente qué trabajo necesitás..." rows="3" data-turno-desc></textarea>
+            </label>
+            <input type="hidden" name="fecha" data-turno-date>
+            <button class="btn btn-primary" type="submit">Solicitar turno</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="service-cta reveal">
+          <h2>Coordinemos tu gestión de obra.</h2>
+          <p>Te enviamos un plan técnico y cronograma de ejecución.</p>
+          <a class="btn btn-primary" href="index.html#contacto">Contactar ahora</a>
         </div>
       </div>
     </section>
@@ -159,22 +125,14 @@
 
   <footer class="site-footer">
     <div class="container footer-wrap">
-      <p>© 2026 Construcciones Torres. Todos los derechos reservados.</p>
-      <a href="index.html#inicio">Volver arriba</a>
+      <p>&copy; 2026 Construcciones Torres</p>
+      <a href="index.html#servicios">Volver a servicios</a>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var calendarEl = document.getElementById('calendar');
-
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth'
-      });
-
-      calendar.render();
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  <script src="calendar.js"></script>
+  <script src="script.js"></script>
+  <script src="time-picker.js"></script>
+  <script src="js/page-loader.js"></script>
 </body>
 </html>
