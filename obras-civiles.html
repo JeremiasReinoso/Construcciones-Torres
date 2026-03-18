@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Obras civiles para infraestructura pública, logística e industrial con control integral.">
+  <title>Obras civiles | Construcciones Torres</title>
+  <link rel="icon" type="image/png" href="Logo construcciones Torres.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      background: var(--bg);
+    }
+
+    .service-hero {
+      padding: 7rem 0 4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at 20% 20%, rgba(255, 95, 31, 0.12), transparent 40%), var(--bg);
+    }
+
+    .service-hero h1 {
+      max-width: 14ch;
+    }
+
+    .service-hero p {
+      max-width: 60ch;
+      color: #c7c7c7;
+      font-size: 1.05rem;
+    }
+
+    .section-card {
+      background: rgba(22, 22, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+    }
+
+    .service-detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .calendar-section {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    #calendar {
+      background: rgba(16, 16, 16, 0.9);
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+    }
+
+    .fc {
+      color: #eaeaea;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .fc .fc-toolbar-title {
+      font-family: "Sora", sans-serif;
+      font-size: 1.2rem;
+    }
+
+    .fc .fc-button-primary {
+      background: linear-gradient(135deg, #ff6a2f, #ff4c0d);
+      border: none;
+      box-shadow: 0 0 0 1px rgba(255, 95, 31, 0.24) inset;
+    }
+
+    .fc .fc-button-primary:disabled {
+      opacity: 0.6;
+    }
+
+    .fc-theme-standard td,
+    .fc-theme-standard th,
+    .fc-theme-standard .fc-scrollgrid {
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .fc .fc-daygrid-day-number {
+      color: #f1f1f1;
+    }
+
+    .fc .fc-day-today {
+      background: rgba(255, 95, 31, 0.12);
+    }
+
+    @media (max-width: 768px) {
+      .service-hero {
+        padding: 6rem 0 3rem;
+      }
+
+      .section-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <div class="blueprint-grid"></div>
+    <div class="industrial-particles"></div>
+    <div class="ambient-glow"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html#servicios">CONSTRUCCIONES TORRES</a>
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html#servicios">Servicios</a></li>
+          <li><a href="index.html#proyectos">Proyecto Mahuida</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="service-hero">
+      <div class="container">
+        <span class="eyebrow">Servicio especializado</span>
+        <h1>Obras civiles</h1>
+        <p>Desarrollamos infraestructura pública, logística e industrial con enfoque en rendimiento, durabilidad y control operativo.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container service-detail section-card">
+        <h2>Descripción del servicio</h2>
+        <p>Gestionamos proyectos de infraestructura desde la planificación hasta la ejecución, coordinando ingeniería, cronogramas críticos y equipos de obra. Nuestro enfoque prioriza la eficiencia operativa y la seguridad en entornos de alta exigencia.</p>
+        <p>Aplicamos metodologías de control de calidad, análisis de suelos y coordinación técnica para asegurar estructuras confiables y sostenibles en el tiempo.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container calendar-section">
+        <div class="section-head">
+          <span class="eyebrow">Agenda</span>
+          <h2>Disponibilidad y turnos</h2>
+        </div>
+        <div class="section-card">
+          <div id="calendar"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 Construcciones Torres. Todos los derechos reservados.</p>
+      <a href="index.html#inicio">Volver arriba</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
+      });
+
+      calendar.render();
+    });
+  </script>
+</body>
+</html>
