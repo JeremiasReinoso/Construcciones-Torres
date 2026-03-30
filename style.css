@@ -1,4 +1,4 @@
-Ôªø@charset "UTF-8";
+@charset "UTF-8";
 :root {
   --bg: #0b0b0b;
   --steel: #161616;
@@ -736,95 +736,7 @@ p {
   margin-bottom: 1.1rem;
 }
 
-.eco-typewriter {
-  display: inline-block;
-  max-width: 0;
-  overflow: hidden;
-  border-right: 2px solid var(--eco);
-  white-space: normal;
-  animation: ecoTyping 3.6s steps(60, end) 0.45s forwards, ecoCaret 0.8s step-end infinite;
-}
-
-.eco-paragraph {
-  color: #bfc6be;
-  margin-bottom: 1rem;
-}
-
-.eco-separator {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(109, 190, 69, 0.75), transparent);
-  margin-top: 1.6rem;
-}
-
-.eco-project-features {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.eco-card {
-  background: rgba(16, 18, 16, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius);
-  padding: 1.2rem;
-  display: grid;
-  gap: 0.6rem;
-  transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-}
-
-.eco-card h3 {
-  position: relative;
-  margin-bottom: 0.4rem;
-}
-
-.eco-card h3::after {
-  content: "";
-  display: block;
-  width: 44px;
-  height: 2px;
-  margin-top: 0.5rem;
-  background: rgba(109, 190, 69, 0.9);
-  opacity: 0.8;
-}
-
-.eco-card p {
-  margin-bottom: 0;
-  color: #aeb6ad;
-}
-
-.eco-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(109, 190, 69, 0.5);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(109, 190, 69, 0.22);
-}
-
-.eco-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(109, 190, 69, 0.4);
-  background: rgba(12, 16, 12, 0.9);
-  box-shadow: inset 0 0 0 1px rgba(109, 190, 69, 0.15);
-}
-
-.eco-icon svg {
-  width: 22px;
-  height: 22px;
-  stroke: var(--eco);
-  stroke-width: 1.6;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-@keyframes ecoTyping {
-  to { max-width: 60ch; }
-}
-
-@keyframes ecoCaret {
-  50% { border-color: transparent; }
+.typing-text { overflow: hidden; white-space: normal; color: #d6d6d6; line-height: 1.7; } .typing-text::after { content: '|'; display: inline-block; color: var(--eco); animation: blink 0.8s step-end infinite; margin-left: 2px; } .typing-text.typing-done::after { display: none; } @keyframes blink { 50% { opacity: 0; } } @keyframes ecoCaret { 50% { border-color: transparent; } }
 }
 
 .eco-hero {
@@ -992,21 +904,7 @@ p {
   50% { background-position: 0% 0; }
 }
 
-.eco-typewriter {
-  display: inline-block;
-  overflow: hidden;
-  white-space: normal;
-  border-right: 2px solid var(--eco);
-  animation: ecoTyping 3.6s steps(60, end) 0.5s forwards, ecoCaret 0.8s step-end infinite;
-}
-
-@keyframes ecoTyping {
-  from { max-width: 0; }
-  to { max-width: 60ch; }
-}
-
-@keyframes ecoCaret {
-  50% { border-color: transparent; }
+.typing-text { overflow: hidden; white-space: normal; color: #d6d6d6; line-height: 1.7; } .typing-text::after { content: '|'; display: inline-block; color: var(--eco); animation: blink 0.8s step-end infinite; margin-left: 2px; } .typing-text.typing-done::after { display: none; } @keyframes blink { 50% { opacity: 0; } } @keyframes ecoCaret { 50% { border-color: transparent; } }
 }
 
 .eco-project-page .eco-title {
@@ -1447,7 +1345,7 @@ p {
   position: relative;
 }
 
-/* sutil l√≠nea naranja animada en la parte superior */
+/* sutil lÌnea naranja animada en la parte superior */
 .calendar-container::before {
   content: "";
   position: absolute;
@@ -1526,7 +1424,7 @@ p {
   transform: none;
 }
 
-/* -- Cabecera d√≠as --------------------------------------- */
+/* -- Cabecera dÌas --------------------------------------- */
 .calendar-container .fc .fc-col-header-cell-cushion {
   color: #aaa;
   font-size: 0.78rem;
@@ -1536,7 +1434,7 @@ p {
   padding: 0.55rem 0;
 }
 
-/* -- Celdas d√≠a ------------------------------------------- */
+/* -- Celdas dÌa ------------------------------------------- */
 .calendar-container .fc .fc-daygrid-day {
   cursor: pointer;
   transition: background 0.18s ease;
@@ -1558,7 +1456,7 @@ p {
   color: #fff;
 }
 
-/* D√≠a de hoy */
+/* DÌa de hoy */
 .calendar-container .fc .fc-day-today {
   background: rgba(255, 95, 31, 0.12) !important;
   border-color: rgba(255, 95, 31, 0.3) !important;
@@ -1569,7 +1467,7 @@ p {
   font-weight: 700;
 }
 
-/* D√≠a seleccionado */
+/* DÌa seleccionado */
 .calendar-container .fc .fc-daygrid-day.is-selected {
   background: rgba(255, 95, 31, 0.2) !important;
   box-shadow: inset 0 0 0 2px rgba(255, 95, 31, 0.55);
@@ -1581,7 +1479,7 @@ p {
   font-weight: 700;
 }
 
-/* D√≠as pasados ‚Äî m√°s opacos */
+/* DÌas pasados ó m·s opacos */
 .calendar-container .fc .fc-day-past {
   opacity: 0.45;
   cursor: default;
@@ -1600,7 +1498,7 @@ p {
   filter: brightness(1.08);
 }
 
-/* -- Animaci√≥n al cambiar mes ------------------------------ */
+/* -- AnimaciÛn al cambiar mes ------------------------------ */
 .calendar-container.calendar-animate .fc-view-harness {
   animation: calendarFade 0.32s ease;
 }
@@ -1718,13 +1616,13 @@ p {
   background: rgba(255, 95, 31, 0.04);
 }
 
-/* Estado v√°lido */
+/* Estado v·lido */
 .turno-field input:valid:not(:placeholder-shown),
 .turno-field select:valid:not([value=""]) {
   border-color: rgba(255, 95, 31, 0.35);
 }
 
-/* -- Bot√≥n submit ------------------------------------------ */
+/* -- BotÛn submit ------------------------------------------ */
 .turno-form .btn-primary {
   width: 100%;
   margin-top: 0.2rem;
@@ -1762,7 +1660,7 @@ p {
   display: block;
 }
 
-/* -- Toast de confirmaci√≥n --------------------------------- */
+/* -- Toast de confirmaciÛn --------------------------------- */
 .turno-toast {
   position: fixed;
   bottom: 1.6rem;
