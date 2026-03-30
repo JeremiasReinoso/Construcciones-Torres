@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const revealItems = document.querySelectorAll(".reveal");
   const counters = document.querySelectorAll(".stat-number");
   const parallaxContainer = document.querySelector("[data-parallax-container]");
@@ -17,6 +17,26 @@
 
   revealItems.forEach((item) => revealObserver.observe(item));
 
+  const revealTextElements = document.querySelectorAll(".reveal-text");
+  revealTextElements.forEach((el) => {
+    const delay = parseInt(el.dataset.delay) || 0;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(20px)";
+    el.style.transition = "opacity 0.8s ease " + delay + "ms, transform 0.8s ease " + delay + "ms";
+    
+    const textObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+          textObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    textObserver.observe(el);
+  });
+
   const animateCounter = (counter) => {
     const target = Number(counter.dataset.target || 0);
     const prefix = counter.dataset.prefix || "";
@@ -28,7 +48,7 @@
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const value = Math.round(target * eased);
-      counter.textContent = `${prefix}${value}${suffix}`;
+      counter.textContent = prefix + value + suffix;
       if (progress < 1) requestAnimationFrame(frame);
     };
 
@@ -60,7 +80,7 @@
         const depth = Number(layer.dataset.depth || 0);
         const tx = -(x * depth);
         const ty = -(y * depth);
-        layer.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        layer.style.transform = "translate3d(" + tx + "px, " + ty + "px, 0)";
       });
     };
 
@@ -103,7 +123,7 @@
     wordRevealElements.forEach((el) => {
       const text = el.textContent.trim();
       const words = text.split(" ");
-      el.innerHTML = words.map(word => `<span class="word">${word}</span>`).join(" ");
+      el.innerHTML = words.map(word => "<span class='word'>" + word + "</span>").join(" ");
     });
 
     const wordObserver = new IntersectionObserver(
@@ -112,7 +132,7 @@
           if (entry.isIntersecting) {
             const words = entry.target.querySelectorAll(".word");
             words.forEach((word, i) => {
-              word.style.transitionDelay = `${i * 0.08}s`;
+              word.style.transitionDelay = (i * 0.08) + "s";
             });
             entry.target.classList.add("is-visible");
             wordObserver.unobserve(entry.target);
@@ -126,29 +146,4 @@
   };
 
   initWordReveal();
-
-  const initTypingAnimation = () => {
-    const typingElements = document.querySelectorAll("[data-typing]");
-    if (typingElements.length === 0) return;
-
-    typingElements.forEach((el) => {
-      const originalText = el.textContent.trim();
-      const delay = parseInt(el.dataset.delay) || 0;
-      el.textContent = "";
-      el.classList.add("typing-active");
-
-      const typeText = (element, text, index) => {
-        if (index < text.length) {
-          element.textContent += text.charAt(index);
-          setTimeout(() => typeText(element, text, index + 1), 35);
-        }
-      };
-
-      setTimeout(() => {
-        typeText(el, originalText, 0);
-      }, delay);
-    });
-  };
-
-  initTypingAnimation();
 })();
