@@ -739,6 +739,23 @@ p {
 .typing-text { overflow: hidden; white-space: normal; color: #d6d6d6; line-height: 1.7; } .typing-text::after { content: '|'; display: inline-block; color: var(--eco); animation: blink 0.8s step-end infinite; margin-left: 2px; } .typing-text.typing-done::after { display: none; } @keyframes blink { 50% { opacity: 0; } } @keyframes ecoCaret { 50% { border-color: transparent; } }
 }
 
+
+.typing-text {
+  visibility: hidden;
+  overflow: hidden;
+  white-space: normal;
+  color: #d6d6d6;
+  line-height: 1.7;
+}
+
+.typing-text.typing-active {
+  visibility: visible;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 .eco-hero {
   position: relative;
   min-height: 100svh;
