@@ -95,4 +95,35 @@
 
   initAutoSlider(".mahuida-slider", ".slide");
   initAutoSlider(".eco-hero-slider", ".eco-hero-slide");
+
+  const initWordReveal = () => {
+    const wordRevealElements = document.querySelectorAll(".word-reveal");
+    if (wordRevealElements.length === 0) return;
+
+    wordRevealElements.forEach((el) => {
+      const text = el.textContent.trim();
+      const words = text.split(" ");
+      el.innerHTML = words.map(word => `<span class="word">${word}</span>`).join(" ");
+    });
+
+    const wordObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const words = entry.target.querySelectorAll(".word");
+            words.forEach((word, i) => {
+              word.style.transitionDelay = `${i * 0.08}s`;
+            });
+            entry.target.classList.add("is-visible");
+            wordObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    wordRevealElements.forEach((el) => wordObserver.observe(el));
+  };
+
+  initWordReveal();
 })();
