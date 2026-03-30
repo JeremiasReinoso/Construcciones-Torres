@@ -135,24 +135,18 @@
       const originalText = el.textContent.trim();
       const delay = parseInt(el.dataset.delay) || 0;
       el.textContent = "";
-      el.style.visibility = "visible";
+      el.classList.add("typing-active");
 
-      const typeText = (element, text, index, callback) => {
+      const typeText = (element, text, index) => {
         if (index < text.length) {
           element.textContent += text.charAt(index);
-          setTimeout(() => typeText(element, text, index + 1, callback), 35);
-        } else {
-          if (callback) callback();
+          setTimeout(() => typeText(element, text, index + 1), 35);
         }
       };
 
-      const startTyping = () => {
-        typeText(el, originalText, 0, () => {
-          el.classList.add("typing-done");
-        });
-      };
-
-      setTimeout(startTyping, delay);
+      setTimeout(() => {
+        typeText(el, originalText, 0);
+      }, delay);
     });
   };
 
