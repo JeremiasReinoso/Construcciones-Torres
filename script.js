@@ -126,4 +126,35 @@
   };
 
   initWordReveal();
+
+  const initTypingAnimation = () => {
+    const typingElements = document.querySelectorAll("[data-typing]");
+    if (typingElements.length === 0) return;
+
+    typingElements.forEach((el) => {
+      const originalText = el.textContent.trim();
+      const delay = parseInt(el.dataset.delay) || 0;
+      el.textContent = "";
+      el.style.visibility = "visible";
+
+      const typeText = (element, text, index, callback) => {
+        if (index < text.length) {
+          element.textContent += text.charAt(index);
+          setTimeout(() => typeText(element, text, index + 1, callback), 35);
+        } else {
+          if (callback) callback();
+        }
+      };
+
+      const startTyping = () => {
+        typeText(el, originalText, 0, () => {
+          el.classList.add("typing-done");
+        });
+      };
+
+      setTimeout(startTyping, delay);
+    });
+  };
+
+  initTypingAnimation();
 })();
